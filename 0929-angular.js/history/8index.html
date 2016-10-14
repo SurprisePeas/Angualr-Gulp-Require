@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-model-options 配合/同步ng-model数据的时机</title>
+		<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+		/*防止进入页面时出现花括号*/
+			.ng-cloak{
+				display: none;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctr" id="id" ng-cloak="" class="ng-cloak">
+		
+		
+		<!--一秒钟后同步提交数据-->
+		<input type="text" ng-model="txt" ng-model-options="{debounce:1000}" />
+		{{txt}}
+		
+		<script type="text/javascript">
+			require(['angular'], function(){
+				var m = angular.module('id' , []);
+				m.controller('ctr', ['$scope', function($scope){
+					$scope.txt = 'its ok!';
+				}]);
+				
+				//使用require模块化时 使用此方法(替代ng-app)
+				angular.bootstrap(document.getElementById('id'),['id']);
+			});
+		</script>
+		
+		
+	</body>
+</html>

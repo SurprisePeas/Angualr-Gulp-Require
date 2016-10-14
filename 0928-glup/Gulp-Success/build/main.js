@@ -1,0 +1,1 @@
+function show(n){}function hd(n){}

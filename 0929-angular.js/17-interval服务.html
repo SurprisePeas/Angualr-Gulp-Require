@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 定时器 </title>
+<script src="org/require.js"></script>
+<script src="org/main.js"></script>
+</head>
+<body ng-controller="ctrl" id="id">
+	<!--
+		1 timeout
+		2 interval
+	-->
+	
+	{{times}}
+	<hr />
+	{{t}}
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope','$interval','$timeout',function($scope,$interval,$timeout){
+			$scope.times = 60;
+			$scope.t = 1;
+			var t = $timeout(function(){
+				var timesId = $interval(function(){
+					$scope.times--;
+				},1000);
+				$scope.t++;
+			},3000);
+			
+			
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>
+</body>
+</html>

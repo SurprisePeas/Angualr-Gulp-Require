@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+    <title>angular Js</title>
+</head>
+<body id="id" ng-controller="ctrl">
+	<table border="1" width="100%">
+		<tr>
+			<th>姓名
+				<span>升序</span>
+				<span>降序</span>
+			</th>
+			<th>年龄
+				<span>升序</span>
+				<span>降序</span>
+			</th>
+		</tr>
+		
+		<tr ng-repeat="v in user">
+			<td>{{v.name}}</td>
+			<td>{{v.age}}</td>
+		</tr>
+	</table>	
+	
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id',[]);
+		md.controller('ctrl', ['$scope', '$filter', function($scope,$filter){
+			$scope.user = [
+				{"name":"小小","age":18},
+				{"name":"大大","age":10},
+				{"name":"量量","age":19}
+			];
+			$scope.orderFields = {
+				'name':true,
+				'age':true
+			};
+			$scope.orderBy = function(field){
+				$scope.orderFields[field] = !$scope.orderFields['field'];
+				$scope.users = $filter('orderBy')($scope.users, field , $scope.orderFields[field]);
+			};
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);		
+	})
+</script>
+</body>
+</html>

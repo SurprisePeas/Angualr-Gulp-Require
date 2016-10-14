@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="resource/require.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resource/main.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="resource/css/bootstrap.min.css">
+    <title>require.js练习</title>
+</head>
+<body>
+    <h1>hello</h1>
+    <hr>
+
+    <a href="javascript:run()">Modal</a>
+<script>
+    function run(){
+        require(['bootstrap', 'util'], function ($, util) {
+            var modalObj =util.modal({
+            	
+                id: 'only',
+                header:'Modal',
+                content:'内容内容内容内容',
+                footer:'<button type="button" class="btn btn-default" data-dismiss="modal">off</button>\
+            <button type="button" class="confirm btn btn-primary">on</button>',
+            	
+            	//事件监听
+                events:{
+                    'hidden.bs.modal':function(){
+                          alert('关闭');
+                    },
+                    
+                    'shown.bs.modal':function(){
+                        modalObj.find('.confirm').click(function(){
+                            alert('确定');
+                            modalObj.modal('hide');
+                        })
+                    }
+                    
+                }
+            });
+        });
+    }
+</script>
+
+
+<!--文本编辑器-->
+<textarea name="content" id="editor_only" rows="" cols="">
+	
+</textarea>
+<script type="text/javascript">
+	require(['util'],function(e){
+		e.editor({
+			id:'editor_only',
+			type:'small',
+		})
+	})
+</script>
+
+
+
+
+
+
+</body>
+</html>

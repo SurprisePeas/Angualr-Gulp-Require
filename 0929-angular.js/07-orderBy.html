@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>orderBy</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		
+		{{news|orderBy:'click'}}
+		<br />
+		{{news|orderBy:'click':true}}
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			$scope.news = [
+				{id:1,click:100,title:'雷恺'},
+				{id:2,click:130,title:'兜'},
+				{id:3,click:120,title:'大蛇丸'},
+				{id:4,click:500,title:'影刃'},
+			];
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> ng-</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		
+		{{user|diy}}
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		
+		//自定义过滤器
+		md.filter('diy' ,function(){
+			return function(userData){
+				angular.forEach(userData,function(v,k){
+					userData[k]['tel'] = v.tel.substr(0,8)+'*****';
+				});
+				return userData;
+			}
+		});
+		
+		md.controller('ctrl',['$scope','$filter',function($scope,$filter){
+			$scope.user = [
+				{user:"啸天",tel:"18600276067"},
+				{user:"天天",tel:"18600276062"},
+			];
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

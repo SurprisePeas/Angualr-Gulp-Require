@@ -1,0 +1,32 @@
+<div>
+	<style type="text/css">
+		.menu a {
+            display : inline-block;
+            border  : solid 1px #dddddd;
+            padding : 5px 10px;
+        }
+        .menu a.active{
+            background: red;
+            color:#fff;
+        }
+        .contents{
+            border:solid 1px #999;
+            padding: 5px;
+        }
+        .contents ul{
+            display: none;
+        }
+        .contents ul:first-child{
+            display : block;
+        }
+	</style>
+	
+	<div class="menu">
+		<a href="javascript:;" ng-class="{active:$first}" ng-repeat="v in data" ng-bind="v.title"></a>
+	</div>
+	<div class="contents">
+		<ul ng-repeat="v in data">
+			<li ng-repeat="vv in v.data" ng-bind="vv.title"></li>
+		</ul>
+	</div>
+</div>

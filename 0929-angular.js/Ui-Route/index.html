@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>路由-ui-route</title>
+	<script src="angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="angular-ui-router.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div ng-app="app">
+		<!--ui-view 相当于一个容器-->
+		<div ui-view=""></div>
+		<a href="" ui-sref="show({id:5})" >编号~</a>
+		<a href="" ui-sref="video">video.</a>
+		<a href="" ui-sref="default">默认页面</a>
+		
+<script type="text/javascript">
+	//继承ui-router
+	var md = angular.module('app',['ui.router']);
+	md.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+		//设置默认路由
+		$urlRouterProvider.otherwise("/default");
+		
+		$stateProvider.state('default',{
+			url:"/default",
+			template:"<div>这是默认内容,即otherwise设置的内容</div>"
+		}).state("show",{
+			url:"/show/{id}",
+			template:"<div>点击的编号是: {{id}}</div>",
+			controller:"bhController"
+		}).state("video",{
+			url:"/video",
+			templateUrl:"views/video.html"
+		})
+	}]);
+	md.controller("bhController",["$scope","$stateParams",function($scope,$stateParams){
+		//读取url中的参数
+		$scope.id = $stateParams.id;
+	}])
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> ng-if 简单的判断是否有status 进行确认提交按钮</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<form action="" method="post">
+			<input type="text" name="" id="" value="协议内容" />	
+			<input type="checkbox"  ng-model="status" /> 接收
+			<button ng-if="status">提交</button>
+		</form>
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

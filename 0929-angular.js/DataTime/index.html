@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="org/css/style.css">
+	<script src="org/require.js"></script>
+	<script src="org/main.js"></script>
+	<script src="directives/datetime.js"></script>
+</head>
+<body id="id" ng-controller="ctrl">
+<div sp-go width="200px"></div>
+<script>
+require(['bootstrap','angular','datepicker'],function(){
+	var m=angular.module('id',['directives']);
+	m.controller('ctrl', ['$scope', function($scope){
+	}]);
+	angular.bootstrap(angular.element("#id"),['id']);
+});
+</script>
+</body>
+</html>

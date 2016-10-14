@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>link</title></title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<!--
+			link  负责执行DOM操作和注册事件监听器等
+		-->
+		
+		<div sp-go ct="news"></div>
+		
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.directive('spGo',[function(){
+			return {
+				restrict:"A",
+				scope:{data:'=ct'},
+				templateUrl:"15-tpl.html",
+				link:function(scope,iElement,iAttrs){
+					//delegate 未来元素添加事件
+					$(iElement).delegate('.menu a','click',function(){
+						//获得当前的序号
+						var pos = $(this).index();
+						//头部标题处理
+						$(".menu a").removeClass('active');
+						$(this).addClass('active');
+						//内容处理
+						$(iElement).find('.contents ul').hide();
+						$(iElement).find('.contents ul').eq(pos).show();
+					});
+				}
+			}
+		}]);
+		
+		md.controller('ctrl',['$scope',function($scope){
+			$scope.news = [
+				{
+					title:'手机',
+					data:[
+						{title:'大锤子'},
+						{title:'Pixel'}
+					]
+				},
+				{
+					title:'电脑',
+					data:[
+						{title:'Mac'},
+						{title:'猎手'}
+					]
+				}
+			];
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>
+	</body>
+</html>

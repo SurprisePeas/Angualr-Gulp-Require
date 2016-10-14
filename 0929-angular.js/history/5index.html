@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title> 获取JSON数据</title>
+		<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="org/css/bootstrap.min.css" />
+		<style type="text/css">
+			.ng-cloak {
+				display: none;
+			}
+			span{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body ng-controller="ctr" id="id" ng-cloak="" class="ng-cloak">
+
+		<table border="3" width="50%">
+			<tr>
+				<th>姓名</th>
+				<th ng-click="orderBy('age')">	年龄
+					<span ng-if="!orderFields.age">升序</span>
+					<span ng-if="orderFields.age">降序</span>
+				</th>
+			</tr>
+
+			<tr ng-repeat="v in users">
+				<td>{{v.name}}</td>
+				<td>{{v.age}}</td>
+			</tr>
+		</table>
+
+		<script type="text/javascript">
+			require(['angular'], function() {
+				var m = angular.module('id', []);
+				m.controller('ctr', ['$scope', '$filter', function($scope, $filter) {
+
+						$scope.users = [{
+							'name': '小小',
+							'age': 10
+						}, {
+							'name': '哒哒',
+							'age': 20
+						}, {
+							'name': '手动',
+							'age': 30
+						}, {
+							'name': '蔷薇',
+							'age': 40
+						}];
+
+						$scope.orderFields = {
+							'name': true,
+							'age': true
+						};
+						//点击事件 进行排序
+						$scope.orderBy = function(field) {
+							$scope.orderFields[field] = !$scope.orderFields[field];
+							$scope.users = $filter('orderBy')($scope.users, field, $scope.orderFields[field]);
+						}
+				}]);
+			//使用require模块化时 使用此方法(替代ng-app)
+			angular.bootstrap(document.getElementById('id'), ['id']);
+			});
+		</script>
+	</body>
+
+</html>

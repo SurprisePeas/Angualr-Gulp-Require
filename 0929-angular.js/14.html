@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义标签 ng-scope 作用域</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		
+		<div sp-go data="getNews()"></div>
+		<p>控制台报错了一大堆,我也不知道是啥....</p>
+		
+<script type="text/javascript">
+	require(['angular','bootstrap'], function(){
+		var md = angular.module('id', []);
+		//自定义标签
+		md.directive('spGo',[function(){
+			return {
+				restrict:'A',
+				scope:{data:'&data'},
+				templateUrl:'14.tpl.html'
+			};
+		}]);
+		
+		md.controller('ctrl',['$scope',function($scope) {
+			$scope.users = [
+				{name: '小子'},
+				{name: '大字'}
+			];
+			$scope.getNews = function() {
+				return [
+					{name:'return个球啊~'},
+					{name:'echo个球啊~'}
+				];
+			}
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

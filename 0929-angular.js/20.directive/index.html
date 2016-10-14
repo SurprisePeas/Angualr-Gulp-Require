@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../org/main-2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="directives/slide.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body id="id" ng-controller="ctr">
+		<div sp-go ctr_data="slides" width="300" footer="0"></div>
+		
+		
+		<script type="text/javascript">
+			require(['angular'],function(){
+				var md = angular.module('id',['directives']);
+				md.controller('ctr',['$scope',function($scope){
+					$scope.slides = [
+						{title:'狗',pic:'images/dog.jpg'},
+						{title:'姑娘',pic:'images/girl.jpg'}
+					];
+				}]);
+				angular.bootstrap(document.getElementById('id'),['id']);
+			});
+		</script>
+	</body>
+</html>

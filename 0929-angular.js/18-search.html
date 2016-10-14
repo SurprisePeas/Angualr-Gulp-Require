@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> ng-</title>
+<script src="org/require.js"></script>
+<script src="org/main.js"></script>
+</head>
+<body ng-controller="ctrl" id="id">
+	<input type="text" ng-model="word"/>
+	
+	<ul>
+		<li ng-repeat="v in result" ng-bind="v.name"></li>
+	</ul>
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope','$http',function($scope,$http){
+			$scope.word = '';
+			$scope.result = [];
+			//监听word,发生变化执行server服务请求数据
+			$scope.$watch('word',function(n,old){
+				if(n != old){
+					$http({
+						method:'get',
+						url:'18.tpl.php?word=' + $scope.word, //GET传参查找数据
+					}).then(function(res){//返回数据结果
+						$scope.result = res.data;
+					});
+				}
+			},false)
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+</body>
+</html>

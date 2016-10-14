@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> ng-disabled ? ng-selected</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<input type="checkbox" ng-model="status" />接受
+		<button ng-disabled="!status" disabled="disabled" >注册</button>
+		<br />
+		
+		<select name="">
+			<option ng-selected="sex==1" value="1">男</option>
+			<option ng-selected="sex==2" value="2">女</option>
+		</select>
+		<br />
+		<input type="radio" ng-model="sex" value="1" />男
+		<input type="radio" ng-model="sex" value="2" />女
+		
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

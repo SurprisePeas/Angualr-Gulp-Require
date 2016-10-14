@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> ng-</title>
+<script src="../org/require.js"></script>
+<script src="../org/main-2.js"></script>
+<script src="servers/news.js"></script>
+</head>
+<body ng-controller="ctrl" id="id">
+	
+	
+	
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope','sp',function($scope,sp){
+			alert(sp.get());
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+</body>
+</html>

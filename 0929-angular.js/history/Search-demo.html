@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索watch</title>
+		<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css"> .cloak{display: none;} </style>
+	</head>
+	<body id="ag"ng-controller="ctr" >
+		<input type="text" ng-model="search"  ng-model-options="{debounce:500}"/>
+		<div ng-cloak="" class="cloak"></div>
+		<br />
+		{{search}}
+		<br />
+		{{content|filter:search}}
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('ag', []);
+		md.controller('ctr', ['$scope', function($scope){
+			$scope.search = '';
+			//监听获得search数据
+			$scope.$watch('search', function(data){
+//				$scope.search = $filter()
+				
+				$scope.content = [
+					{id:1, name:'abc'},
+					{id:2, name:'cda'},
+					{id:3, name:'bcd'},
+					{id:4, name:'def'},
+					{id:4, name:'大王'},
+					{id:4, name:'小王'},
+					{id:4, name:'啦啦'},
+					{id:4, name:'卡卡'},
+				]; 
+			});
+		}]);
+		angular.bootstrap(document.getElementById('ag'), ['ag']);
+	})
+</script>
+	</body>
+</html>

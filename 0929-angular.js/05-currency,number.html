@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 货币格式化  数字格式化</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<p>货币格式化</p>
+		{{name|currency:'¥':4}}
+		<br />
+		{{name|currency:'¥':1}}
+		<br />
+		<p>数字处理</p>
+		{{name|number:1}}
+		<br />
+		{{name|number:4}}
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			$scope.name = 11321325.16546545;
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

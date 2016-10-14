@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> ng-src 图片路径处理</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<div ng-repeat="v in content">
+			<img ng-src="{{v.pic}}"/>
+			<p>{{v.name}}</p>
+		</div>
+		
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			$scope.content = [
+				{name:'内容', pic:'dog.jpg'}
+			];
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

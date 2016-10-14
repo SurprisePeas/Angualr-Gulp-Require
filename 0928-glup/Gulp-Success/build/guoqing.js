@@ -1,0 +1,1 @@
+function show(i){gyiyiuyiuuiy}function hd(i){}

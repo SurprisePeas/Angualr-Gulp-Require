@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> ng-</title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+    <style type="text/css">
+    	.style1{
+    		color: powderblue;
+    	}
+    	.style2{
+    		color: lawngreen;
+    	}
+    </style>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<p ng-class="{style1:true,style2:true}" >哈哈哈哈哈哈哈</p>
+		<input type="checkbox" ng-model="del" />
+		<input type="checkbox" ng-model="imp" />
+		<br />
+		<div ng-class="{style1:del,style2:imp}" >链接看见了看见</div>
+		<hr /><br />
+		
+		<input type="checkbox" ng-model="status" />显示
+		<p ng-show="status">哈哈哈哈</p>
+		<hr /><br />
+		
+		<input type="checkbox" ng-model="check" ng-init="check=true" />
+		<p ng-if="check">选中显示</p>
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

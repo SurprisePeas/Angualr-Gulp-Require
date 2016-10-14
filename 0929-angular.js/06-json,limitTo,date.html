@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>json limitTo date </title>
+    <script src="org/require.js"></script>
+    <script src="org/main.js"></script>
+	</head>
+	<body ng-controller="ctrl" id="id">
+		<pre>{{content|json}}</pre>
+		<br />
+		
+		{{title|limitTo:4}}
+		<br />
+		{{arrayTitle|limitTo:2}}
+		<br />
+		
+		{{addtime|date:'yyyy-MM-dd HH:mm:ss'}}
+		
+		
+		
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope',function($scope){
+			$scope.content = {name:'名', title:'标题'};
+			$scope.title = '就拉开就打了卡时间段里卡时间段';
+			$scope.arrayTitle = ['as','asd','asdasd'];
+			$scope.addtime = 1288323693006;
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+	</body>
+</html>

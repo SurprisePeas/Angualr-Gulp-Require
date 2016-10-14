@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+		<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+		/*防止进入页面时出现花括号*/
+			.ng-cloak{
+				display: none;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctr" id="id" ng-cloak="" class="ng-cloak">
+		
+		<!--ng-model 只能用于[表单]-->
+		<input type="text" ng-model="name" />
+		
+		<!--ng-bind方法-->	
+		<div ng-bind="name"></div>
+		
+		<!--直接花括号拿去-->
+		<p>练习方法name:{{name}}</p>
+		
+		<script type="text/javascript">
+			require(['angular'], function($){
+				var m = angular.module('id' , []);
+				m.controller('ctr', ['$scope', function($scope){
+					$scope.name = '练习';
+					$scope.show = function(){
+						document.write('函数方法');
+					}
+				}]);
+				
+				//使用require模块化时 使用此方法(替代ng-app)
+				angular.bootstrap(document.getElementById('id'),['id']);
+			});
+		</script>
+		
+		
+	</body>
+</html>

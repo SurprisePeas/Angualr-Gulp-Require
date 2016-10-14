@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>$scope.$watch 数据变化监听</title>
+		<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+		<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+		/*防止进入页面时出现花括号*/
+			.ng-cloak{
+				display: none;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctr" id="id" ng-cloak="" class="ng-cloak">
+		
+		<!--ng-model 只能用于[表单]-->
+		<input type="text" ng-model="name" />
+		
+		<script type="text/javascript">
+			require(['angular'], function($){
+				var m = angular.module('id' , []);
+				m.controller( 'ctr', ['$scope', function($scope){
+					$scope.name = '练习';
+					
+					//数据变化监听
+					$scope.$watch('name' , function(new_data,old_data){
+						//控制台打印
+						console.log(new_data + '=>' +old_data );
+					});
+				}]);
+				//使用require模块化时 使用此方法(替代ng-app)
+				angular.bootstrap(document.getElementById('id'),['id']);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>server服务</title>
+<script src="org/require.js"></script>
+<script src="org/main.js"></script>
+</head>
+<body ng-controller="ctrl" id="id">
+	{{data}}
+	<hr />
+	{{data2}}
+		
+<script type="text/javascript">
+	require(['angular'], function(){
+		var md = angular.module('id', []);
+		md.controller('ctrl',['$scope','$http',function($scope,$http){
+			$scope.data = [];
+			$http({
+				method:'get',
+				url:'16.tpl.php'
+			}).then(function(response){//response返回的数据
+				//console.log(response);
+				$scope.data = response.data;//将response里的data数据,赋值给作用域data
+				//console.log($scope.data);
+			});
+			
+			//简写形式
+			$.get('16.tpl.php',function(response){
+				$scope.data2 = response;
+				$scope.$apply();
+			},'json');
+			
+		}]);
+		angular.bootstrap(document.getElementById('id'),['id']);
+	})
+</script>		
+</body>
+</html>

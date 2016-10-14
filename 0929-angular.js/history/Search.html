@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>watch</title>
+	<script src="org/require.js" type="text/javascript" charset="utf-8"></script>
+	<script src="org/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body id="ag" ng-controller="ctr">
+	<input type="text" ng-model="search" ng-model-options="{debounce:500}" />
+	<ul>
+		<li ng-repeat="v in result" ng-bind="v.name"></li>
+	</ul>
+	<script type="text/javascript">
+		require(['angular'], function() {
+			var md = angular.module('ag', []);
+			md.controller('ctr', ['$scope', '$http', function($scope,$http) {
+				$scope.search = '';
+				$scope.result = [];
+				
+				//监听获得search数据
+				$scope.$watch('search', function(n ,o) {
+					if(n != o){
+						$http({
+							method:'get',
+							url:'Search.php?search=' + $scope.search,
+						}).then(function(res){
+							console.log(res);
+							$scope.result = res.data;
+						});
+					}
+				},false);
+			}]);
+			angular.bootstrap(document.getElementById('ag'), ['ag']);
+		})
+	</script>
+</body>
+</html>
