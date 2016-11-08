@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.ng-cloak {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#box {
+  position: relative;
+  top: 80px;
+  left: 0;
+}
+#box #left-view {
+  color: deepskyblue;
+}
+#box .app {
+  border: solid 1px #999999;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+#box .app .menu {
+  flex: 1;
+  height: 30px;
+  background: #f3f3f3;
+}
+#box .app .menu ul {
+  display: flex;
+  justify-content: space-around;
+}
+#box .app .menu ul li {
+  position: relative;
+  text-align: center;
+}
+#box .app .menu ul li .child-menu {
+  text-align: left;
+  position: absolute;
+  width: 100px;
+  border: solid 1px #ddd;
+  display: flex;
+  flex-direction: column;
+  bottom: 20px;
+}
+.edit {
+  position: relative;
+}
+.edit .delIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+.edit .childMenu {
+  position: relative;
+}
+/*# sourceMappingURL=style-1.css.map */
